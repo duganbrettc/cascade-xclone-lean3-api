@@ -385,7 +385,10 @@ func handleFollow(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.WriteHeader(http.StatusCreated)
+	writeJSON(w, http.StatusCreated, map[string]any{
+		"follower_id": followerID,
+		"followee_id": followeeID,
+	})
 }
 
 func handleUnfollow(w http.ResponseWriter, r *http.Request) {
